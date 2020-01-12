@@ -21,14 +21,14 @@ public class Project {
     private String projectIdentifier;
     @NotBlank(message = "Project description is required")
     private String description;
-    @JsonFormat(pattern = "dd-mm-yyyy")
+    @JsonFormat(pattern = "mm-dd-yyyy")
     private Date start_date;
-    @JsonFormat(pattern = "dd-mm-yyyy")
+    @JsonFormat(pattern = "mm-dd-yyyy")
     private Date end_date;
 
-    @JsonFormat(pattern = "dd-mm-yyyy")
+    @JsonFormat(pattern = "mm-dd-yyyy")
     private Date created_At;
-    @JsonFormat(pattern = "dd-mm-yyyy")
+    @JsonFormat(pattern = "mm-dd-yyyy")
     private Date updated_At;
 
     @PrePersist
