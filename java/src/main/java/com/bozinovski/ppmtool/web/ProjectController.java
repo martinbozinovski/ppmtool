@@ -3,6 +3,7 @@ package com.bozinovski.ppmtool.web;
 import com.bozinovski.ppmtool.domain.Project;
 import com.bozinovski.ppmtool.services.MapValidationErrorService;
 import com.bozinovski.ppmtool.services.ProjectService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -17,6 +18,7 @@ public class ProjectController {
 
     private final ProjectService projectService;
     private final MapValidationErrorService mapValidationErrorService;
+    @Autowired
     public ProjectController(ProjectService projectService, MapValidationErrorService mapValidationErrorService) {
         this.projectService = projectService;
         this.mapValidationErrorService = mapValidationErrorService;
