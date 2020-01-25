@@ -35,7 +35,7 @@ public class ProjectTaskService {
             backlog.setPTSequence(BacklogSequence);
             projectTask.setProjectSequence(projectIdentifier + "-" + BacklogSequence);
             projectTask.setProjectIdentifier(projectIdentifier);
-            if (projectTask.getPriority() == null) {
+            if (projectTask.getPriority() == 0 || projectTask.getPriority() == null) {
                 projectTask.setPriority(3);
             }
             if (projectTask.getStatus() == ("") || projectTask.getStatus() == null) {
@@ -78,10 +78,6 @@ public class ProjectTaskService {
 
     public void deletePTByProjectSequence(String backlog_id, String pt_id) {
         ProjectTask projectTask = findPTByProjectSequence(backlog_id, pt_id);
-//        Backlog backlog = projectTask.getBacklog();
-//        List<ProjectTask> pts = backlog.getProjectTasks();
-//        pts.remove(projectTask);
-//        backlogRepository.save(backlog);
         projectTaskRepository.delete(projectTask);
     }
 }
