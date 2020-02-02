@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import static com.bozinovski.ppmtool.security.SecurityConstants.H2_URL;
 import static com.bozinovski.ppmtool.security.SecurityConstants.SIGN_UP_URLS;
@@ -25,6 +26,11 @@ import static com.bozinovski.ppmtool.security.SecurityConstants.SIGN_UP_URLS;
         prePostEnabled = true
 )
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Bean
+    public JwtAuthenticationFilter jwtAuthenticationFilter() {
+        return new JwtAuthenticationFilter();
+    }
 
     private final JwtAuthenticationEntryPoint unauthorizedHandler;
     private final CustomUserDetailsService customUserDetailsService;
@@ -70,5 +76,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(SIGN_UP_URLS).permitAll()
                 .antMatchers(H2_URL).permitAll()
                 .anyRequest().authenticated();
+
+        http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 }
